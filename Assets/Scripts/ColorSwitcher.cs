@@ -7,21 +7,17 @@ public class ColorSwitcher : MonoBehaviour {
     public float hue;
 
     public UnityAction OnSnakeColorSet;
-	// Use this for initialization
-	void Start () {
+
+    void Start ()
+    {
         StartCoroutine(Flashy());
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<PlayerMovement>())
+        if (col.GetComponent<SnakeBehavior>())
         {
-            col.GetComponent<PlayerMovement>().SetHue(hue);
+            col.GetComponent<SnakeBehavior>().SetHue(hue);
             if (OnSnakeColorSet != null)
                 OnSnakeColorSet();
         }
@@ -39,6 +35,5 @@ public class ColorSwitcher : MonoBehaviour {
             appliedColor = Color.HSVToRGB(h, s, v);
             yield return new WaitForSeconds(.03f);
         }
-
     }
 }

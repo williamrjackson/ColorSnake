@@ -22,6 +22,6 @@ public class ObstacleCustomInspector : Editor {
         }
         EditorGUILayout.ColorField(resultColor);
         targetObst.GetComponent<SpriteRenderer>().color = resultColor;
-        EditorUtility.SetDirty(targetObst);
+        Undo.RecordObject(targetObst, targetObst.name + "Hue Modified");
     }
 }

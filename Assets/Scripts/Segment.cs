@@ -7,7 +7,6 @@ public class Segment : MonoBehaviour {
     public GameObject SegmentSpawnPoint;
     public ColorSwitcher InitialColorBar;
 
-    // Use this for initialization
     void Awake () {
         SegmentSpawnPoint.GetComponent<Renderer>().enabled = false;
         InitialColorBar.OnSnakeColorSet += OnEnterSegment;
@@ -17,9 +16,4 @@ public class Segment : MonoBehaviour {
     {
         SegmentGenerator.instance.InstantiateRandomSegment(SegmentSpawnPoint.transform.position);
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

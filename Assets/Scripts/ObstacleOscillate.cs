@@ -8,23 +8,17 @@ public class ObstacleOscillate : MonoBehaviour {
     public float triggerProximity = 0;
 
     private bool m_bIsOscillating = false;
-    private PlayerMovement m_Player;
+    private SnakeBehavior m_Player;
 
-	// Use this for initialization
 	void Start () {
-        m_Player = FindObjectOfType<PlayerMovement>();
+        m_Player = FindObjectOfType<SnakeBehavior>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (m_bIsOscillating)
             return;
 
-        if (triggerProximity == 0)
-        {
-            StartOsc();
-        }
-        else if (Vector3.Distance(transform.position, m_Player.transform.position) <= triggerProximity)
+        if (triggerProximity == 0 || Vector3.Distance(transform.position, m_Player.transform.position) <= triggerProximity)
         {
             StartOsc();
         }

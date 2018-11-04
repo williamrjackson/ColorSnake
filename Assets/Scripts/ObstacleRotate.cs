@@ -7,11 +7,11 @@ public class ObstacleRotate : MonoBehaviour {
     public float triggerProximity = 0;
 
     private bool m_bIsRotating = false;
-    private PlayerMovement m_Player;
+    private SnakeBehavior m_Player;
     // Use this for initialization
     void Start()
     {
-        m_Player = FindObjectOfType<PlayerMovement>();
+        m_Player = FindObjectOfType<SnakeBehavior>();
     }
 
     // Update is called once per frame

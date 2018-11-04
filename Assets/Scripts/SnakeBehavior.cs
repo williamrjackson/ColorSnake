@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class SnakeBehavior : MonoBehaviour
 { 
     public float speed = 5;
     public float touchSensitivity = 1;

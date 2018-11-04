@@ -16,10 +16,10 @@ public class Obstacle : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         print("Obstacle Hit: " + hue);
-        if (col.GetComponent<PlayerMovement>() && col.GetComponent<PlayerMovement>().GetHue() != hue)
+        if (col.GetComponent<SnakeBehavior>() && col.GetComponent<SnakeBehavior>().GetHue() != hue)
         {
             print("dead");
-            col.GetComponent<PlayerMovement>().SetDead();
+            col.GetComponent<SnakeBehavior>().SetDead();
         }
         else
         {
