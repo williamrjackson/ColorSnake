@@ -1,0 +1,3 @@
+[submodule "Assets\\ScriptingUtils"]
+	path = Assets\\ScriptingUtils
+	url = https://github.com/williamrjackson/UnityScriptingUtilities.git
