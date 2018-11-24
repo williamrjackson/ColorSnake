@@ -9,6 +9,7 @@ public class SegmentGenerator : MonoBehaviour {
 
     private int m_level = 0;
     private List<Segment> segmentList;
+    private Segment m_LastSeg = null;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class SegmentGenerator : MonoBehaviour {
     public void InstantiateRandomSegment(Vector3 spawnPosition)
     {
         m_level++;
-        Segment randomSeg = Instantiate(segments.GetRandom(), spawnPosition, Quaternion.identity).GetComponent<Segment>();
+        Segment randomSeg = Instantiate(segments.GetRandom(true), spawnPosition, Quaternion.identity).GetComponent<Segment>();
         randomSeg.name = m_level.ToString();
         QueueDequeue(randomSeg);
     }
