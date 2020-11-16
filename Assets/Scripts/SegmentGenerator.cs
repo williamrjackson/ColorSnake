@@ -5,11 +5,12 @@ using UnityEngine;
 public class SegmentGenerator : MonoBehaviour {
     public static SegmentGenerator instance;
 
-    public Wrj.WeightedGameObjects segments;
+    public int repeatThreshold = 2;
+    public List<Segment> segments;
 
     private int m_level = 0;
     private List<Segment> segmentList;
-    private Segment m_LastSeg = null;
+    private Stack<string> lastUsed;
 
     void Awake()
     {
@@ -22,13 +23,25 @@ public class SegmentGenerator : MonoBehaviour {
             Destroy(this);
         }
         segmentList = new List<Segment>();
+        lastUsed = new Stack<string>();
     }
+ 
     public void InstantiateRandomSegment(Vector3 spawnPosition)
     {
         m_level++;
-        Segment randomSeg = Instantiate(segments.GetRandom(true), spawnPosition, Quaternion.identity).GetComponent<Segment>();
-        randomSeg.name = m_level.ToString();
-        QueueDequeue(randomSeg);
+        Segment randomSeg = segments.GetRandom<Segment>();
+        while (lastUsed.Contains(randomSeg.name))
+        {
+            randomSeg = segments.GetRandom<Segment>();
+        }
+        lastUsed.Push(randomSeg.name);
+        if (lastUsed.Count > repeatThreshold)
+        {
+            lastUsed.Pop();
+        }
+        Segment newSeg = Instantiate(segments.GetRandom<Segment>(), spawnPosition, Quaternion.identity);
+        newSeg.name = m_level.ToString();
+        QueueDequeue(newSeg);
     }
     private void QueueDequeue(Segment newSegment)
     {
